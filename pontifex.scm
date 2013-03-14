@@ -11,7 +11,7 @@
          (cdr l))))
 
 (define (nth n l)
-  (if (= n 0)
+  (if (zero? n)
       (car l)
       (nth (- n 1) (cdr l))))
 
