@@ -204,5 +204,5 @@
 
 (define (pontifex-decrypt ciphertext deck)
   (let ((keytext (get-keystream-by-length (string-length ciphertext) deck))
-        (ct-lst (string->list (string-upcase ciphertext))))
+        (ct-lst (string->list (string-upcase ciphertext)))
     (list->string (zip-with pontifex-char-sub ct-lst keytext))))
