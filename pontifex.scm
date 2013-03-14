@@ -124,7 +124,7 @@
          (d2 (delete-from-index oldpos deck))
          (left (take d2 newpos))
          (right (drop d2 newpos)))
-    (if (= newpos 0)
+    (if (zero? newpos)
         (concatenate (list d2
                            (list card)))
         (concatenate (list left
