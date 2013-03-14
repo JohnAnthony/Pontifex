@@ -2,18 +2,25 @@
 
 ;; Helper functions
 
+(define (add1 n)
+  (+ n 1))
+
+(define (sub1 n)
+  (- n 1))
+
 (define (delete-from-index n l)
   (cond ((null? l)
          '())
         ((> n 0)
-         (cons (car l) (delete-from-index (- n 1) (cdr l))))
+         (cons (car l)
+               (delete-from-index (sub1 n) (cdr l))))
         (else
          (cdr l))))
 
 (define (nth n l)
   (if (zero? n)
       (car l)
-      (nth (- n 1) (cdr l))))
+      (nth (sub1 n) (cdr l))))
 
 (define (zip-with f l1 l2)
   (cond ((null? l1)
@@ -22,12 +29,6 @@
          '())
         (else (cons (f (car l1) (car l2))
                     (zip-with f (cdr l1) (cdr l2))))))
-
-(define (add1 n)
-  (+ n 1))
-
-(define (sub1 n)
-  (- n 1))
 
 (define (pair-each a l)
   (cond ((null? l) '())
