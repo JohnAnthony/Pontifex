@@ -192,7 +192,9 @@
         (cons (keystream-value-from-deck d2)
               (get-keystream-by-length (sub1 n) d2)))))
 
-;; The two outwards-facing functions
+;; The Outwards-facing functions
+
+(define pontifex-random-key get-new-shuffled-deck)
 
 (define (pontifex-encrypt plaintext deck)
   (let* ((keytext (get-keystream-by-length (string-length plaintext) deck))
