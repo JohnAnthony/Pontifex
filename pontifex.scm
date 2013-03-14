@@ -174,7 +174,7 @@
   (card-to-keystream-value (output-card deck)))
 
 (define (get-keystream-by-length n deck)
-  (if (= n 0)
+  (if (zero? n)
       '()
       (let ((d2 (deck-encryption-step deck)))
         (cons (keystream-value-from-deck d2)
