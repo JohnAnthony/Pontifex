@@ -118,18 +118,6 @@
         ((equal? 'joker-b card) 53)
         (else (add1 (list-index (lambda (c) (equal? c card)) *clean-deck*)))))
 
-(define (jump-card-forwards-old card steps deck)
-  (cond ((null? deck)
-         '())
-        ((equal? card (car deck))
-         (let ((left (take (cdr deck) steps))
-               (right (drop deck (add1 steps))))
-           (concatenate (list left
-                              (list card)
-                              right))))
-        (else
-         (cons (car deck) (jump-card-forwards card steps (cdr deck))))))
-
 (define (jump-card-forwards card steps deck)
   (let* ((oldpos (list-index (lambda (c) (equal? c card)) deck))
          (newpos (modulo (+ 1 steps oldpos) 54))
