@@ -1,5 +1,5 @@
-(use-modules (srfi srfi-1))
-;             (srfi srfi-26))
+(use-modules (srfi srfi-1)
+             (srfi srfi-26))
 
 ;; Helper functions
 
@@ -99,7 +99,7 @@
 ;;Core stuff
 
 (define (pontifex-sanitise c)
-  (let ((index (list-index (lambda (c2) (equal? c c2)) pontifex-char-list)))
+  (let ((index (list-index (cut equal? c <>) pontifex-char-list)))
     (if (eq? #f index)
         #\X
         c)))
@@ -108,20 +108,20 @@
   (string->list "ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
 
 (define (pontifex-char-add c k)
-  (let ((ci (list-index (lambda (x) (equal? c x)) pontifex-char-list)))
+  (let ((ci (list-index (cut equal? c <>) pontifex-char-list)))
     (nth (modulo (+ ci k) 26) pontifex-char-list)))
 
 (define (pontifex-char-sub c k)
-  (let ((ci (list-index (lambda (x) (equal? c x)) pontifex-char-list)))
+  (let ((ci (list-index (cut equal? c <>) pontifex-char-list)))
     (nth (modulo (- ci k) 26) pontifex-char-list)))
 
 (define (pontifex-value card)
   (cond ((equal? 'joker-a card) 53)
         ((equal? 'joker-b card) 53)
-        (else (add1 (list-index (lambda (c) (equal? c card)) *clean-deck*)))))
+        (else (add1 (list-index (cut equal? card <>) *clean-deck*)))))
 
 (define (jump-card-forwards card steps deck)
-  (let* ((oldpos (list-index (lambda (c) (equal? c card)) deck))
+  (let* ((oldpos (list-index (cut equal? card <>) deck))
          (newpos (modulo (+ 1 steps oldpos) 54))
          (d2 (delete-from-index oldpos deck))
          (left (take d2 newpos))
@@ -138,8 +138,8 @@
       (equal? c 'joker-b)))
 
 (define (triple-joker-cut deck)
-  (let* ((a (list-index (lambda (c) (equal? c 'joker-a)) deck))
-         (b (list-index (lambda (c) (equal? c 'joker-b)) deck))
+  (let* ((a (list-index (cut equal? 'joker-a <>) deck))
+         (b (list-index (cut equal? 'joker-b <>) deck))
          (fst-j (min a b))
          (lst-j (max a b))
          (head (take deck fst-j))
