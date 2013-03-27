@@ -3,25 +3,19 @@
 
 ;; Helper functions
 
-(define (add1 n)
-  (+ n 1))
-
-(define (sub1 n)
-  (- n 1))
-
 (define (delete-from-index n l)
   (cond ((null? l)
          '())
         ((> n 0)
          (cons (car l)
-               (delete-from-index (sub1 n) (cdr l))))
+               (delete-from-index (1- n) (cdr l))))
         (else
          (cdr l))))
 
 (define (nth n l)
   (if (zero? n)
       (car l)
-      (nth (sub1 n) (cdr l))))
+      (nth (1- n) (cdr l))))
 
 (define (zip-with f l1 l2)
   (cond ((null? l1)
@@ -118,7 +112,7 @@
 (define (pontifex-value card)
   (cond ((equal? 'joker-a card) 53)
         ((equal? 'joker-b card) 53)
-        (else (add1 (list-index (cut equal? card <>) *clean-deck*)))))
+        (else (1+ (list-index (cut equal? card <>) *clean-deck*)))))
 
 (define (jump-card-forwards card steps deck)
   (let* ((oldpos (list-index (cut equal? card <>) deck))
@@ -143,8 +137,8 @@
          (fst-j (min a b))
          (lst-j (max a b))
          (head (take deck fst-j))
-         (tail (drop deck (add1 lst-j)))
-         (mid (drop (take deck (add1 lst-j)) fst-j)))
+         (tail (drop deck (1+ lst-j)))
+         (mid (drop (take deck (1+ lst-j)) fst-j)))
     (concatenate (list tail mid head))))
 
 (define (count-cut deck)
@@ -159,7 +153,7 @@
                              (list bottom)))))))
 
 (define (output-card deck)
-  (let ((i (sub1 (pontifex-value (car deck)))))
+  (let ((i (1- (pontifex-value (car deck)))))
     (nth i deck)))
 
 (define (card-to-keystream-value c)
@@ -180,7 +174,7 @@
       '()
       (let ((d2 (deck-encryption-step deck)))
         (cons (keystream-value-from-deck d2)
-              (get-keystream-by-length (sub1 n) d2)))))
+              (get-keystream-by-length (1- n) d2)))))
 
 ;; The Outwards-facing functions
 
