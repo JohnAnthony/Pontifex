@@ -1,6 +1,10 @@
 (use-modules (srfi srfi-1)
              (srfi srfi-26))
 
+;; We need random state
+
+(define pontifex-rstate (random-state-from-platform))
+
 ;; Helper functions
 
 (define (delete-from-index n l)
@@ -51,7 +55,7 @@
         (sz (length l))
         (n 0))
     (for-each (lambda (z)
-                (vector-swap! l2 n (random sz))
+                (vector-swap! l2 n (random sz pontifex-rstate))
                 (set! n (+ n 1)))
               l)
     (vector->list l2)))
