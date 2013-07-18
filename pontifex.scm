@@ -13,7 +13,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 ;; ABOUT:
 ;;
 ;; The world's manliest encryption algorithm. The only encryption
@@ -25,6 +24,7 @@
 ;; raping her with his (manly) beard. The rest of the book is Randy
 ;; doing awesome stuff, thereby showing that she is stupid and wrong
 
+;; git version at github.com/JohnAnthony/Pontifex
 
 (use-modules (srfi srfi-1)
              (srfi srfi-26))
