@@ -26,6 +26,15 @@
 
 ;; git version at github.com/JohnAnthony/Pontifex
 
+;; USAGE:
+;;
+;; Make a key via any method you choose. A pontifex-random-key
+;; function is provided for this purpose. Generate cyphertext with
+;; (pontifex-encrypt message key) where the message is a string.
+;; Decrypt with (pontifex-decrypt cyphertext key)
+;;
+;; Simples.
+
 (use-modules (srfi srfi-1)
              (srfi srfi-26))
 
