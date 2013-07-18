@@ -13,15 +13,18 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 ;; ABOUT:
 ;;
 ;; The world's manliest encryption algorithm. The only encryption
 ;; algorithm in which you can use the key to play poker.
 ;; Based upon Bruce Schneier's (manly) work for Cryptonomicon.
+;;
 ;; In Cryptonomicon the character Randy has a girlfriend who basically
 ;; tells him to check his CIS privelege and stop metaphorically
 ;; raping her with his (manly) beard. The rest of the book is Randy
 ;; doing awesome stuff, thereby showing that she is stupid and wrong
+
 
 (use-modules (srfi srfi-1)
              (srfi srfi-26))
