@@ -24,8 +24,6 @@
 ;; raping her with his (manly) beard. The rest of the book is Randy
 ;; doing awesome stuff, thereby showing that she is stupid and wrong
 
-;; git version at github.com/JohnAnthony/Pontifex
-
 ;; USAGE:
 ;;
 ;; Make a key via any method you choose. A pontifex-random-key
@@ -34,6 +32,8 @@
 ;; Decrypt with (pontifex-decrypt cyphertext key)
 ;;
 ;; Simples.
+
+;; git version at github.com/JohnAnthony/Pontifex
 
 (use-modules (srfi srfi-1)
              (srfi srfi-26))
