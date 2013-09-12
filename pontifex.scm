@@ -1,4 +1,4 @@
-;; Copyright (C) 2013 John Alist-refony
+;; Copyright (C) 2013 John Anthony
 ;;
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 ;;
 ;; Simples.
 
-;; git version at github.com/JohnAlist-refony/Pontifex
+;; git version at github.com/JohnAnthony/Pontifex
 
 (use-modules (srfi srfi-1)
              (srfi srfi-26))
@@ -139,11 +139,11 @@
 
 (define (pontifex-char-add c k)
   (let ((ci (list-index (cut equal? c <>) pontifex-char-list)))
-    (list-ref (modulo (+ ci k) 26) pontifex-char-list)))
+    (list-ref pontifex-char-list (modulo (+ ci k) 26))))
 
 (define (pontifex-char-sub c k)
   (let ((ci (list-index (cut equal? c <>) pontifex-char-list)))
-    (list-ref (modulo (- ci k) 26) pontifex-char-list)))
+    (list-ref pontifex-char-list (modulo (- ci k) 26))))
 
 (define (pontifex-value card)
   (cond ((equal? 'joker-a card) 53)
@@ -190,7 +190,7 @@
 
 (define (output-card deck)
   (let ((i (1- (pontifex-value (car deck)))))
-    (list-ref i deck)))
+    (list-ref deck i)))
 
 (define (card-to-keystream-value c)
   (modulo (pontifex-value c) 26))
