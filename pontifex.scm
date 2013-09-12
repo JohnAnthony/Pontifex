@@ -82,15 +82,13 @@
                 (vector-set! v n1 (vector-ref v n2))
                 (vector-set! v n2 x)))))
 
-(define (shuffle l)
-  (let ((l2 (list->vector l))
-        (sz (length l))
-        (n 0))
-    (for-each (lambda (z)
-                (vector-swap! l2 n (random sz pontifex-rstate))
-                (set! n (+ n 1)))
-              l)
-    (vector->list l2)))
+(define (shuffle! deck)
+  (define (shuffle-iter n)
+    (if (>= n (vector-length deck))
+        deck
+        (begin (vector-swap! deck n (random n))
+               (shuffle-iter (1+ n)))))
+  (shuffle-iter 1))
 
 ;; Card functions
 
@@ -117,14 +115,14 @@
                         joker-b))
 
 (define (make-fresh-deck)
-  (append (map suit-face-pair-to-symbol
-               (concatenate (xzip suits faces)))
-          special-cards))
+  (list->vector (append (map suit-face-pair-to-symbol
+                             (concatenate (xzip suits faces)))
+                        special-cards)))
 
 (define *clean-deck* (make-fresh-deck))
 
 (define (get-new-shuffled-deck)
-  (shuffle *clean-deck*))
+  (shuffle! *clean-deck*))
 
 ;;Core stuff
 
